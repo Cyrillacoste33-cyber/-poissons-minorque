@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075985">
+<title>🐟 Mon Pokédex – Poissons de Minorque</title>
+<style>
+:root{--blue:#075985;--cyan:#0891b2;--bg:#eef8fb;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#12343b}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,var(--blue),var(--cyan));color:white;padding:18px 15px calc(14px + env(safe-area-inset-top));padding-top:calc(14px + env(safe-area-inset-top));box-shadow:0 3px 12px #0003}
+h1{margin:0;font-size:22px}.sub{margin-top:4px;font-size:13px;opacity:.92}
+.progress{height:9px;background:#ffffff44;border-radius:10px;margin-top:11px;overflow:hidden}#bar{height:100%;width:0;background:white}
+.tools{padding:12px;position:sticky;top:91px;z-index:9;background:var(--bg)}.search{width:100%;padding:12px 14px;border:1px solid #c8dfe5;border-radius:13px;background:#fff;font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 11px 35px}
+.card{background:var(--card);border-radius:15px;overflow:hidden;box-shadow:0 2px 9px #00000012}.card.seen{outline:3px solid #22c55e}
+.photo{display:block;width:100%;height:112px;object-fit:contain;background:#f8fcfd}
+.info{padding:9px 10px 11px}.name{font-weight:750;font-size:15px;line-height:1.18}.latin{font-size:12px;font-style:italic;color:#607a82;margin-top:3px}
+label{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:14px;font-weight:650}label input{width:21px;height:21px;accent-color:#0891b2}
+.note{font-size:12px;color:#58747b;padding:0 13px 25px;line-height:1.45}
+@media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style></head><body>
+<header><h1>🐟 Mon Pokédex – Poissons de Minorque</h1>
+<div class="sub"><span id="count">0</span> / 32 espèces cochées</div><div class="progress"><div id="bar"></div></div></header>
+<div class="tools"><input class="search" id="q" placeholder="🔎 Rechercher un poisson…"></div>
+<main class="grid" id="grid"></main>
+<div class="note">Photos/illustrations : Descobreix Menorca / Toni Llobet. Cette première base reprend les espèces présentées dans leur guide de poissons du littoral de Minorque. Les cases cochées sont conservées sur cet appareil.</div>
+<script>
+const fish=[{"fr": "Serran écriture", "la": "Serranus scriba", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_serranus_scriba_toni_llobet.jpg"}, {"fr": "Serran chevrette", "la": "Serranus cabrilla", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_serranus_cabrilla_toni_llobet.jpg"}, {"fr": "Girelle paon", "la": "Thalassoma pavo", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_thalassoma_pavo_toni_llobet.jpg"}, {"fr": "Girelle commune", "la": "Coris julis", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_coris_julis_toni_llobet.jpg"}, {"fr": "Tordo", "la": "Symphodus tinca", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_tord_toni_llobet.jpg"}, {"fr": "Labre vert", "la": "Labrus viridis", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_labrus_viridis_toni_llobet.jpg"}, {"fr": "Crénilabre mélops", "la": "Symphodus melops", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_tord_roquer_toni_llobet.jpg"}, {"fr": "Rouget de roche", "la": "Mullus surmuletus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_moll_toni_llobet.jpg"}, {"fr": "Castagnole", "la": "Chromis chromis", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_moret_toni_llobet.jpg"}, {"fr": "Rascasse brune", "la": "Scorpaena porcus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_scorpaeno_porcus_toni_llobet.jpg"}, {"fr": "Mérou brun", "la": "Epinephelus marginatus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2019/04/peixos_menorca_epinephelus_marginatus_toni_llobet-1.jpg"}, {"fr": "Gobie à grosse tête", "la": "Gobius cobitis", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_cabot_toni_llobet.jpg"}, {"fr": "Blennie gattorugine", "la": "Parablennius gattorugine", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_rabosa_toni_llobet.jpg"}, {"fr": "Blennie sanguine", "la": "Parablennius sanguinolentus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_bavosa_toni_llobet.jpg"}, {"fr": "Tripterygion rouge", "la": "Tripterygion tripteronotus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_bavosa_morruda_toni_llobet.jpg"}, {"fr": "Fausse sole", "la": "Bothus podas", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_bothus_podas_toni_llobet.jpg"}, {"fr": "Murène commune", "la": "Muraena helena", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_morena_toni_llobet.jpg"}, {"fr": "Sar à deux bandes", "la": "Diplodus vulgaris", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_variada_toni_llobet.jpg"}, {"fr": "Sparaillon", "la": "Diplodus annularis", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_esparrall_toni_llobet.jpg"}, {"fr": "Dorade grise / Chopa", "la": "Spondyliosoma cantharus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_cantera_toni_llobet.jpg"}, {"fr": "Marbré", "la": "Lithognathus mormyrus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_mabre_toni_llobet.jpg"}, {"fr": "Palomète blanche", "la": "Trachinotus ovatus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2019/04/menorca_peixos_trachinotus_ovatus_toni_llobet-1.jpg"}, {"fr": "Oblade", "la": "Oblada melanura", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_oblada_toni_llobet.jpg"}, {"fr": "Dorade royale", "la": "Sparus aurata", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_orada_toni_llobet.jpg"}, {"fr": "Sar commun", "la": "Diplodus sargus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_sarg_toni_llobet.jpg"}, {"fr": "Saupe", "la": "Sarpa salpa", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_salpa_toni_llobet.jpg"}, {"fr": "Picarel / Mendole", "la": "Spicara maena", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_xucla_toni_llobet.jpg"}, {"fr": "Bogue", "la": "Boops boops", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_boga_toni_llobet.jpg"}, {"fr": "Barracuda méditerranéen", "la": "Sphyraena sphyraena", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_espet_toni_llobet.jpg"}, {"fr": "Mulet lippu", "la": "Chelon labrosus", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_chelon_labrosus_toni_llobet.jpg"}, {"fr": "Loup / Bar", "la": "Dicentrarchus labrax", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_dicentrarchus_labrax_llobarro_toni_llobet.jpg"}, {"fr": "Sériole couronnée", "la": "Seriola dumerili", "img": "https://www.descobreixmenorca.com/wp-content/uploads/2016/05/peixos_menorca_cirviola_toni_llobet.jpg"}];
+const KEY="pokedex-minorque-checked-v1";
+let seen=JSON.parse(localStorage.getItem(KEY)||"[]");
+const esc=s=>s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]);
+function save(){localStorage.setItem(KEY,JSON.stringify(seen));document.getElementById("count").textContent=seen.length;document.getElementById("bar").style.width=(seen.length/fish.length*100)+"%";}
+function render(){
+ const q=document.getElementById("q").value.toLowerCase().trim(), g=document.getElementById("grid");g.innerHTML="";
+ fish.forEach((f,i)=>{
+   if(q && !(f.fr+" "+f.la).toLowerCase().includes(q)) return;
+   const c=document.createElement("article");c.className="card"+(seen.includes(i)?" seen":"");
+   c.innerHTML=`<img class="photo" src="${f.img}" alt="${esc(f.fr)}" loading="lazy">
+   <div class="info"><div class="name">${esc(f.fr)}</div><div class="latin">${esc(f.la)}</div>
+   <label><input type="checkbox" ${seen.includes(i)?"checked":""}> Déjà vu</label></div>`;
+   c.querySelector("input").addEventListener("change",e=>{
+      if(e.target.checked){if(!seen.includes(i))seen.push(i)}else{seen=seen.filter(x=>x!==i)}
+      c.classList.toggle("seen",e.target.checked);save();
+   });
+   g.appendChild(c);
+ });
+}
+document.getElementById("q").addEventListener("input",render);render();save();
+</script></body></html>
