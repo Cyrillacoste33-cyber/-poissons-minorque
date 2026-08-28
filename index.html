@@ -1,121 +1,1207 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#075985"><title>🐟 Pokédex poissons de Minorque</title>
+<meta name="theme-color" content="#075985">
+<title>🐟 Mon Pokédex – Poissons de Minorque</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#eef8fb;color:#17363d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:5;background:linear-gradient(135deg,#075985,#0891b2);color:white;padding:calc(15px + env(safe-area-inset-top)) 14px 14px;box-shadow:0 3px 12px #0003}
-h1{margin:0 0 4px;font-size:22px}.sub{font-size:14px}.bar{height:9px;background:#ffffff44;border-radius:10px;margin-top:10px;overflow:hidden}#fill{height:100%;width:0;background:#fff}
-.tools{position:sticky;top:83px;z-index:4;background:#eef8fb;padding:11px 12px}#q{width:100%;padding:13px;border:1px solid #c8dde3;border-radius:13px;font-size:16px;background:white}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 11px 30px}.card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 9px #0001}.card.seen{outline:3px solid #22c55e}
-.card img{display:block;width:100%;height:125px;object-fit:contain;background:#f8fbfc}.card img.broken{visibility:hidden}
-.info{padding:9px 10px 11px}.name{font-weight:750;font-size:15px;line-height:1.2}.latin{font-size:12px;color:#607b82;font-style:italic;margin-top:3px}.level{display:inline-block;margin-top:6px;padding:3px 7px;border-radius:99px;background:#e5f4f7;color:#176174;font-size:11px}
-label{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:14px;font-weight:650}label input{width:20px;height:20px;accent-color:#0891b2}
-@media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
-</style></head><body>
-<header><h1>🐟 Mon Pokédex – Poissons de Minorque</h1><div><b id="n">0</b> / 32 espèces vues</div><div class="bar"><div id="fill"></div></div></header>
+*{box-sizing:border-box}
+body{margin:0;background:#eef8fb;color:#17363d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#075985,#0891b2);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 14px 13px;box-shadow:0 3px 12px #0003}
+h1{margin:0 0 5px;font-size:22px;line-height:1.15}
+.sub{font-size:15px}
+.bar{height:9px;background:#ffffff55;border-radius:20px;margin-top:9px;overflow:hidden}
+#fill{height:100%;width:0;background:#fff;transition:width .25s}
+.tools{position:sticky;top:91px;z-index:15;background:#eef8fb;padding:10px 12px}
+#q{width:100%;padding:13px 14px;border:1px solid #c8dde3;border-radius:14px;font-size:16px;background:#fff;outline:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 11px 30px}
+.card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 9px #0001;min-width:0}
+.card.seen{outline:3px solid #22c55e}
+.photo{height:125px;background:#f6fafb;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:none}
+.photo img.ok{display:block}
+.loading{font-size:12px;color:#71868c;text-align:center;padding:8px}
+.info{padding:9px 10px 11px}
+.name{font-weight:800;font-size:15px;line-height:1.2}
+.latin{font-size:12px;color:#607b82;font-style:italic;margin-top:3px}
+.level{display:inline-block;margin-top:6px;padding:3px 7px;border-radius:99px;background:#e5f4f7;color:#176174;font-size:11px}
+label{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:14px;font-weight:700}
+label input{width:20px;height:20px;accent-color:#0891b2}
+.note{padding:10px 14px 18px;color:#607b82;font-size:12px;text-align:center}
+@media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}.photo{height:150px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🐟 Mon Pokédex – Poissons de Minorque</h1>
+<div><b id="n">0</b> / 100 espèces vues</div>
+<div class="bar"><div id="fill"></div></div>
+</header>
 <div class="tools"><input id="q" placeholder="🔎 Rechercher un poisson…"></div>
-<main class="grid"><article class="card" data-search="serran écriture serranus scriba très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Serranus%20scriba33.jpg" alt="Serran écriture" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Serran écriture</div><div class="latin">Serranus scriba</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="0"> Déjà vu</label></div></article><article class="card" data-search="serran chevrette serranus cabrilla courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pez%20cabra%20%28Serranus%20cabrilla%29%2C%20Cabo%20de%20Palos%2C%20Espa%C3%B1a%2C%202022-07-17%2C%20DD%2040.jpg" alt="Serran chevrette" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Serran chevrette</div><div class="latin">Serranus cabrilla</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="1"> Déjà vu</label></div></article><article class="card" data-search="girelle paon thalassoma pavo très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Peces%20verdes%20%28Thalassoma%20pavo%29%2C%20Cabo%20de%20Palos%2C%20Espa%C3%B1a%2C%202022-07-16%2C%20DD%2043.jpg" alt="Girelle paon" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Girelle paon</div><div class="latin">Thalassoma pavo</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="2"> Déjà vu</label></div></article><article class="card" data-search="girelle commune coris julis très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Coris%20julis%201.jpg" alt="Girelle commune" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Girelle commune</div><div class="latin">Coris julis</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="3"> Déjà vu</label></div></article><article class="card" data-search="tordo symphodus tinca courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Symphodus%20tinca.jpg" alt="Tordo" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Tordo</div><div class="latin">Symphodus tinca</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="4"> Déjà vu</label></div></article><article class="card" data-search="labre vert labrus viridis assez rare">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Labrus%20viridis.jpg" alt="Labre vert" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Labre vert</div><div class="latin">Labrus viridis</div><div class="level">Assez rare</div>
-<label><input type="checkbox" data-id="5"> Déjà vu</label></div></article><article class="card" data-search="crénilabre mélops symphodus melops courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Symphodus%20melops.jpg" alt="Crénilabre mélops" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Crénilabre mélops</div><div class="latin">Symphodus melops</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="6"> Déjà vu</label></div></article><article class="card" data-search="rouget de roche mullus surmuletus très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Mullus%20surmuletus1001.jpg" alt="Rouget de roche" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Rouget de roche</div><div class="latin">Mullus surmuletus</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="7"> Déjà vu</label></div></article><article class="card" data-search="castagnole chromis chromis très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Chromis%20chromis.jpg" alt="Castagnole" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Castagnole</div><div class="latin">Chromis chromis</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="8"> Déjà vu</label></div></article><article class="card" data-search="rascasse brune scorpaena porcus courant mais discrète">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pez%20escorpi%C3%B3n%20negro%20%28Scorpaena%20porcus%29%2C%20Cabo%20de%20Palos%2C%20Espa%C3%B1a%2C%202022-07-15%2C%20DD%20112.jpg" alt="Rascasse brune" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Rascasse brune</div><div class="latin">Scorpaena porcus</div><div class="level">Courant mais discrète</div>
-<label><input type="checkbox" data-id="9"> Déjà vu</label></div></article><article class="card" data-search="mérou brun epinephelus marginatus rare en snorkeling">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Epinephelus%20marginatus.jpg" alt="Mérou brun" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Mérou brun</div><div class="latin">Epinephelus marginatus</div><div class="level">Rare en snorkeling</div>
-<label><input type="checkbox" data-id="10"> Déjà vu</label></div></article><article class="card" data-search="gobie à grosse tête gobius cobitis très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Gobius%20cobitis.jpg" alt="Gobie à grosse tête" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Gobie à grosse tête</div><div class="latin">Gobius cobitis</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="11"> Déjà vu</label></div></article><article class="card" data-search="blennie gattorugine parablennius gattorugine courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Parablennius%20gattorugine.jpg" alt="Blennie gattorugine" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Blennie gattorugine</div><div class="latin">Parablennius gattorugine</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="12"> Déjà vu</label></div></article><article class="card" data-search="blennie sanguine parablennius sanguinolentus assez courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Parablennius%20sanguinolentus.jpg" alt="Blennie sanguine" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Blennie sanguine</div><div class="latin">Parablennius sanguinolentus</div><div class="level">Assez courant</div>
-<label><input type="checkbox" data-id="13"> Déjà vu</label></div></article><article class="card" data-search="tripterygion rouge tripterygion tripteronotus assez courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Tripterygion%20tripteronotus.jpg" alt="Tripterygion rouge" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Tripterygion rouge</div><div class="latin">Tripterygion tripteronotus</div><div class="level">Assez courant</div>
-<label><input type="checkbox" data-id="14"> Déjà vu</label></div></article><article class="card" data-search="fausse sole bothus podas courant sur sable">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bothus%20podas.jpg" alt="Fausse sole" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Fausse sole</div><div class="latin">Bothus podas</div><div class="level">Courant sur sable</div>
-<label><input type="checkbox" data-id="15"> Déjà vu</label></div></article><article class="card" data-search="murène commune muraena helena assez rare">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Muraena%20helena.jpg" alt="Murène commune" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Murène commune</div><div class="latin">Muraena helena</div><div class="level">Assez rare</div>
-<label><input type="checkbox" data-id="16"> Déjà vu</label></div></article><article class="card" data-search="sar à deux bandes diplodus vulgaris très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Diplodus%20vulgaris.jpg" alt="Sar à deux bandes" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Sar à deux bandes</div><div class="latin">Diplodus vulgaris</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="17"> Déjà vu</label></div></article><article class="card" data-search="sparaillon diplodus annularis très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Diplodus%20annularis.jpg" alt="Sparaillon" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Sparaillon</div><div class="latin">Diplodus annularis</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="18"> Déjà vu</label></div></article><article class="card" data-search="chopa spondyliosoma cantharus courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Spondyliosoma%20cantharus.jpg" alt="Chopa" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Chopa</div><div class="latin">Spondyliosoma cantharus</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="19"> Déjà vu</label></div></article><article class="card" data-search="marbré lithognathus mormyrus très courant sur sable">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lithognathus%20mormyrus.jpg" alt="Marbré" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Marbré</div><div class="latin">Lithognathus mormyrus</div><div class="level">Très courant sur sable</div>
-<label><input type="checkbox" data-id="20"> Déjà vu</label></div></article><article class="card" data-search="palomète blanche trachinotus ovatus assez courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Trachinotus%20ovatus.jpg" alt="Palomète blanche" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Palomète blanche</div><div class="latin">Trachinotus ovatus</div><div class="level">Assez courant</div>
-<label><input type="checkbox" data-id="21"> Déjà vu</label></div></article><article class="card" data-search="oblade oblada melanura très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Oblada%20melanura.jpg" alt="Oblade" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Oblade</div><div class="latin">Oblada melanura</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="22"> Déjà vu</label></div></article><article class="card" data-search="dorade royale sparus aurata courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sparus%20aurata.jpg" alt="Dorade royale" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Dorade royale</div><div class="latin">Sparus aurata</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="23"> Déjà vu</label></div></article><article class="card" data-search="sar commun diplodus sargus très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Diplodus%20sargus.jpg" alt="Sar commun" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Sar commun</div><div class="latin">Diplodus sargus</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="24"> Déjà vu</label></div></article><article class="card" data-search="saupe sarpa salpa très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sarpa%20salpa%20Minorca.jpg" alt="Saupe" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Saupe</div><div class="latin">Sarpa salpa</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="25"> Déjà vu</label></div></article><article class="card" data-search="picarel spicara maena courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Spicara%20maena.jpg" alt="Picarel" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Picarel</div><div class="latin">Spicara maena</div><div class="level">Courant</div>
-<label><input type="checkbox" data-id="26"> Déjà vu</label></div></article><article class="card" data-search="bogue boops boops très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Boops%20boops.jpg" alt="Bogue" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Bogue</div><div class="latin">Boops boops</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="27"> Déjà vu</label></div></article><article class="card" data-search="barracuda méditerranéen sphyraena sphyraena assez rare">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sphyraena%20sphyraena.jpg" alt="Barracuda méditerranéen" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Barracuda méditerranéen</div><div class="latin">Sphyraena sphyraena</div><div class="level">Assez rare</div>
-<label><input type="checkbox" data-id="28"> Déjà vu</label></div></article><article class="card" data-search="mulet lippu chelon labrosus très courant">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Chelon%20labrosus.jpg" alt="Mulet lippu" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Mulet lippu</div><div class="latin">Chelon labrosus</div><div class="level">Très courant</div>
-<label><input type="checkbox" data-id="29"> Déjà vu</label></div></article><article class="card" data-search="loup / bar dicentrarchus labrax rare en snorkeling">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Dicentrarchus%20labrax.jpg" alt="Loup / Bar" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Loup / Bar</div><div class="latin">Dicentrarchus labrax</div><div class="level">Rare en snorkeling</div>
-<label><input type="checkbox" data-id="30"> Déjà vu</label></div></article><article class="card" data-search="sériole couronnée seriola dumerili rare en snorkeling">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Seriola%20dumerili.jpg" alt="Sériole couronnée" loading="lazy" onerror="this.classList.add('broken')">
-<div class="info"><div class="name">Sériole couronnée</div><div class="latin">Seriola dumerili</div><div class="level">Rare en snorkeling</div>
-<label><input type="checkbox" data-id="31"> Déjà vu</label></div></article></main>
+<main class="grid">
+<article class="card" data-search="serran écriture serranus scriba très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Serranus scriba" alt="Serran écriture" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Serran écriture</div>
+    <div class="latin">Serranus scriba</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="0"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="serran chevrette serranus cabrilla courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Serranus cabrilla" alt="Serran chevrette" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Serran chevrette</div>
+    <div class="latin">Serranus cabrilla</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="1"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="girelle paon thalassoma pavo très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Thalassoma pavo" alt="Girelle paon" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Girelle paon</div>
+    <div class="latin">Thalassoma pavo</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="2"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="girelle commune coris julis très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Coris julis" alt="Girelle commune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Girelle commune</div>
+    <div class="latin">Coris julis</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="3"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="tordo symphodus tinca courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus tinca" alt="Tordo" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Tordo</div>
+    <div class="latin">Symphodus tinca</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="4"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="labre vert labrus viridis assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Labrus viridis" alt="Labre vert" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Labre vert</div>
+    <div class="latin">Labrus viridis</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="5"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre mélops symphodus melops courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus melops" alt="Crénilabre mélops" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre mélops</div>
+    <div class="latin">Symphodus melops</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="6"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rouget de roche mullus surmuletus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Mullus surmuletus" alt="Rouget de roche" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rouget de roche</div>
+    <div class="latin">Mullus surmuletus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="7"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="castagnole chromis chromis très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Chromis chromis" alt="Castagnole" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Castagnole</div>
+    <div class="latin">Chromis chromis</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="8"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rascasse brune scorpaena porcus courant mais discrète">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scorpaena porcus" alt="Rascasse brune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rascasse brune</div>
+    <div class="latin">Scorpaena porcus</div>
+    <div class="level">Courant mais discrète</div>
+    <label><input type="checkbox" data-id="9"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mérou brun epinephelus marginatus rare en snorkeling">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Epinephelus marginatus" alt="Mérou brun" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mérou brun</div>
+    <div class="latin">Epinephelus marginatus</div>
+    <div class="level">Rare en snorkeling</div>
+    <label><input type="checkbox" data-id="10"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie à grosse tête gobius cobitis très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius cobitis" alt="Gobie à grosse tête" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie à grosse tête</div>
+    <div class="latin">Gobius cobitis</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="11"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie gattorugine parablennius gattorugine courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Parablennius gattorugine" alt="Blennie gattorugine" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie gattorugine</div>
+    <div class="latin">Parablennius gattorugine</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="12"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie sanguine parablennius sanguinolentus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Parablennius sanguinolentus" alt="Blennie sanguine" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie sanguine</div>
+    <div class="latin">Parablennius sanguinolentus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="13"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="tripterygion rouge tripterygion tripteronotus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Tripterygion tripteronotus" alt="Tripterygion rouge" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Tripterygion rouge</div>
+    <div class="latin">Tripterygion tripteronotus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="14"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="fausse sole bothus podas courant sur sable">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Bothus podas" alt="Fausse sole" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Fausse sole</div>
+    <div class="latin">Bothus podas</div>
+    <div class="level">Courant sur sable</div>
+    <label><input type="checkbox" data-id="15"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="murène commune muraena helena assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Muraena helena" alt="Murène commune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Murène commune</div>
+    <div class="latin">Muraena helena</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="16"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sar à deux bandes diplodus vulgaris très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplodus vulgaris" alt="Sar à deux bandes" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sar à deux bandes</div>
+    <div class="latin">Diplodus vulgaris</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="17"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sparaillon diplodus annularis très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplodus annularis" alt="Sparaillon" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sparaillon</div>
+    <div class="latin">Diplodus annularis</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="18"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="chopa spondyliosoma cantharus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Spondyliosoma cantharus" alt="Chopa" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Chopa</div>
+    <div class="latin">Spondyliosoma cantharus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="19"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="marbré lithognathus mormyrus très courant sur sable">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Lithognathus mormyrus" alt="Marbré" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Marbré</div>
+    <div class="latin">Lithognathus mormyrus</div>
+    <div class="level">Très courant sur sable</div>
+    <label><input type="checkbox" data-id="20"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="palomète blanche trachinotus ovatus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Trachinotus ovatus" alt="Palomète blanche" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Palomète blanche</div>
+    <div class="latin">Trachinotus ovatus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="21"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="oblade oblada melanura très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Oblada melanura" alt="Oblade" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Oblade</div>
+    <div class="latin">Oblada melanura</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="22"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="dorade royale sparus aurata courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Sparus aurata" alt="Dorade royale" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Dorade royale</div>
+    <div class="latin">Sparus aurata</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="23"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sar commun diplodus sargus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplodus sargus" alt="Sar commun" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sar commun</div>
+    <div class="latin">Diplodus sargus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="24"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="saupe sarpa salpa très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Sarpa salpa" alt="Saupe" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Saupe</div>
+    <div class="latin">Sarpa salpa</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="25"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="picarel spicara maena courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Spicara maena" alt="Picarel" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Picarel</div>
+    <div class="latin">Spicara maena</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="26"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="bogue boops boops très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Boops boops" alt="Bogue" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Bogue</div>
+    <div class="latin">Boops boops</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="27"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="barracuda méditerranéen sphyraena sphyraena assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Sphyraena sphyraena" alt="Barracuda méditerranéen" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Barracuda méditerranéen</div>
+    <div class="latin">Sphyraena sphyraena</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="28"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mulet lippu chelon labrosus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Chelon labrosus" alt="Mulet lippu" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mulet lippu</div>
+    <div class="latin">Chelon labrosus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="29"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="loup / bar dicentrarchus labrax rare en snorkeling">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Dicentrarchus labrax" alt="Loup / Bar" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Loup / Bar</div>
+    <div class="latin">Dicentrarchus labrax</div>
+    <div class="level">Rare en snorkeling</div>
+    <label><input type="checkbox" data-id="30"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sériole couronnée seriola dumerili rare en snorkeling">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Seriola dumerili" alt="Sériole couronnée" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sériole couronnée</div>
+    <div class="latin">Seriola dumerili</div>
+    <div class="level">Rare en snorkeling</div>
+    <label><input type="checkbox" data-id="31"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mulet doré chelon auratus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Chelon auratus" alt="Mulet doré" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mulet doré</div>
+    <div class="latin">Chelon auratus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="32"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mulet porc chelon ramada courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Chelon ramada" alt="Mulet porc" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mulet porc</div>
+    <div class="latin">Chelon ramada</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="33"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mulet à grosse tête mugil cephalus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Mugil cephalus" alt="Mulet à grosse tête" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mulet à grosse tête</div>
+    <div class="latin">Mugil cephalus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="34"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mulet sauteur chelon saliens courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Chelon saliens" alt="Mulet sauteur" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mulet sauteur</div>
+    <div class="latin">Chelon saliens</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="35"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rouget-barbet de vase mullus barbatus courant sur sable">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Mullus barbatus" alt="Rouget-barbet de vase" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rouget-barbet de vase</div>
+    <div class="latin">Mullus barbatus</div>
+    <div class="level">Courant sur sable</div>
+    <label><input type="checkbox" data-id="36"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sar tambour diplodus cervinus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplodus cervinus" alt="Sar tambour" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sar tambour</div>
+    <div class="latin">Diplodus cervinus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="37"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sar à museau pointu diplodus puntazzo courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplodus puntazzo" alt="Sar à museau pointu" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sar à museau pointu</div>
+    <div class="latin">Diplodus puntazzo</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="38"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="dorade rose pagellus bogaraveo rare en snorkeling">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Pagellus bogaraveo" alt="Dorade rose" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Dorade rose</div>
+    <div class="latin">Pagellus bogaraveo</div>
+    <div class="level">Rare en snorkeling</div>
+    <label><input type="checkbox" data-id="39"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="pageot commun pagellus erythrinus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Pagellus erythrinus" alt="Pageot commun" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Pageot commun</div>
+    <div class="latin">Pagellus erythrinus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="40"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="pageot acarné pagellus acarne assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Pagellus acarne" alt="Pageot acarné" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Pageot acarné</div>
+    <div class="latin">Pagellus acarne</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="41"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="pagré commun pagrus pagrus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Pagrus pagrus" alt="Pagré commun" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Pagré commun</div>
+    <div class="latin">Pagrus pagrus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="42"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="mostelle de roche phycis phycis rare, dans les trous">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Phycis phycis" alt="Mostelle de roche" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Mostelle de roche</div>
+    <div class="latin">Phycis phycis</div>
+    <div class="level">Rare, dans les trous</div>
+    <label><input type="checkbox" data-id="43"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="congre commun conger conger assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Conger conger" alt="Congre commun" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Congre commun</div>
+    <div class="latin">Conger conger</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="44"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="murène brune gymnothorax unicolor rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gymnothorax unicolor" alt="Murène brune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Murène brune</div>
+    <div class="latin">Gymnothorax unicolor</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="45"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rascasse rouge scorpaena scrofa rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scorpaena scrofa" alt="Rascasse rouge" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rascasse rouge</div>
+    <div class="latin">Scorpaena scrofa</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="46"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rascasse du large scorpaena elongata très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scorpaena elongata" alt="Rascasse du large" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rascasse du large</div>
+    <div class="latin">Scorpaena elongata</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="47"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="chabot à épines scorpaenodes arenai très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scorpaenodes arenai" alt="Chabot à épines" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Chabot à épines</div>
+    <div class="latin">Scorpaenodes arenai</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="48"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rascasse pustuleuse scorpaena notata assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scorpaena notata" alt="Rascasse pustuleuse" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rascasse pustuleuse</div>
+    <div class="latin">Scorpaena notata</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="49"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="rascasse rose helicolenus dactylopterus très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Helicolenus dactylopterus" alt="Rascasse rose" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Rascasse rose</div>
+    <div class="latin">Helicolenus dactylopterus</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="50"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="poisson-lézard synodus saurus courant sur sable">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Synodus saurus" alt="Poisson-lézard" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Poisson-lézard</div>
+    <div class="latin">Synodus saurus</div>
+    <div class="level">Courant sur sable</div>
+    <label><input type="checkbox" data-id="51"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="poisson-lézard à taches synodus synodus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Synodus synodus" alt="Poisson-lézard à taches" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Poisson-lézard à taches</div>
+    <div class="latin">Synodus synodus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="52"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="saint-pierre zeus faber rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Zeus faber" alt="Saint-Pierre" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Saint-Pierre</div>
+    <div class="latin">Zeus faber</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="53"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie noir gobius niger courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius niger" alt="Gobie noir" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie noir</div>
+    <div class="latin">Gobius niger</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="54"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie paganel gobius paganellus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius paganellus" alt="Gobie paganel" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie paganel</div>
+    <div class="latin">Gobius paganellus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="55"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie à bouche rouge gobius cruentatus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius cruentatus" alt="Gobie à bouche rouge" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie à bouche rouge</div>
+    <div class="latin">Gobius cruentatus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="56"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie de bucchich gobius bucchichi courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius bucchichi" alt="Gobie de Bucchich" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie de Bucchich</div>
+    <div class="latin">Gobius bucchichi</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="57"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie à joues rouges gobius geniporus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius geniporus" alt="Gobie à joues rouges" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie à joues rouges</div>
+    <div class="latin">Gobius geniporus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="58"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie à deux taches gobius incognitus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius incognitus" alt="Gobie à deux taches" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie à deux taches</div>
+    <div class="latin">Gobius incognitus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="59"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie jaune gobius xanthocephalus assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius xanthocephalus" alt="Gobie jaune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie jaune</div>
+    <div class="latin">Gobius xanthocephalus</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="60"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie léopard thorogobius ephippiatus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Thorogobius ephippiatus" alt="Gobie léopard" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie léopard</div>
+    <div class="latin">Thorogobius ephippiatus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="61"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="gobie à sept bandes gobius roulei rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gobius roulei" alt="Gobie à sept bandes" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Gobie à sept bandes</div>
+    <div class="latin">Gobius roulei</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="62"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie paon salaria pavo très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Salaria pavo" alt="Blennie paon" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie paon</div>
+    <div class="latin">Salaria pavo</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="63"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie ocellée blennius ocellaris assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Blennius ocellaris" alt="Blennie ocellée" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie ocellée</div>
+    <div class="latin">Blennius ocellaris</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="64"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie de roux parablennius rouxi courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Parablennius rouxi" alt="Blennie de Roux" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie de Roux</div>
+    <div class="latin">Parablennius rouxi</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="65"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie pilicorne parablennius pilicornis courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Parablennius pilicornis" alt="Blennie pilicorne" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie pilicorne</div>
+    <div class="latin">Parablennius pilicornis</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="66"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie de zvonimir parablennius zvonimiri assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Parablennius zvonimiri" alt="Blennie de Zvonimir" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie de Zvonimir</div>
+    <div class="latin">Parablennius zvonimiri</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="67"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie de dalmatien microlipophrys dalmatinus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Microlipophrys dalmatinus" alt="Blennie de Dalmatien" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie de Dalmatien</div>
+    <div class="latin">Microlipophrys dalmatinus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="68"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="blennie de la méditerranée microlipophrys canevae assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Microlipophrys canevae" alt="Blennie de la Méditerranée" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Blennie de la Méditerranée</div>
+    <div class="latin">Microlipophrys canevae</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="69"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="lepadogaster de gouan lepadogaster gouani assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Lepadogaster gouani" alt="Lepadogaster de Gouan" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Lepadogaster de Gouan</div>
+    <div class="latin">Lepadogaster gouani</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="70"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="lepadogaster à deux taches diplecogaster bimaculata assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Diplecogaster bimaculata" alt="Lepadogaster à deux taches" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Lepadogaster à deux taches</div>
+    <div class="latin">Diplecogaster bimaculata</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="71"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre cendré symphodus cinereus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus cinereus" alt="Crénilabre cendré" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre cendré</div>
+    <div class="latin">Symphodus cinereus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="72"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre ocellé symphodus ocellatus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus ocellatus" alt="Crénilabre ocellé" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre ocellé</div>
+    <div class="latin">Symphodus ocellatus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="73"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre méditerranéen symphodus mediterraneus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus mediterraneus" alt="Crénilabre méditerranéen" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre méditerranéen</div>
+    <div class="latin">Symphodus mediterraneus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="74"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre à cinq taches symphodus roissali assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus roissali" alt="Crénilabre à cinq taches" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre à cinq taches</div>
+    <div class="latin">Symphodus roissali</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="75"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre rayé symphodus rostratus courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus rostratus" alt="Crénilabre rayé" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre rayé</div>
+    <div class="latin">Symphodus rostratus</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="76"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="crénilabre de dalmatie symphodus dalmaticus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Symphodus dalmaticus" alt="Crénilabre de Dalmatie" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre de Dalmatie</div>
+    <div class="latin">Symphodus dalmaticus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="77"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="labre merle labrus merula courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Labrus merula" alt="Labre merle" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Labre merle</div>
+    <div class="latin">Labrus merula</div>
+    <div class="level">Courant</div>
+    <label><input type="checkbox" data-id="78"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="labre à queue noire labrus bimaculatus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Labrus bimaculatus" alt="Labre à queue noire" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Labre à queue noire</div>
+    <div class="latin">Labrus bimaculatus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="79"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="labre tacheté labrus mixtus rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Labrus mixtus" alt="Labre tacheté" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Labre tacheté</div>
+    <div class="latin">Labrus mixtus</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="80"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="poisson-perroquet méditerranéen sparisoma cretense assez courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Sparisoma cretense" alt="Poisson-perroquet méditerranéen" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Poisson-perroquet méditerranéen</div>
+    <div class="latin">Sparisoma cretense</div>
+    <div class="level">Assez courant</div>
+    <label><input type="checkbox" data-id="81"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="baliste cabri balistes capriscus rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Balistes capriscus" alt="Baliste cabri" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Baliste cabri</div>
+    <div class="latin">Balistes capriscus</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="82"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="poisson-lune mola mola très rare près du bord">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Mola mola" alt="Poisson-lune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Poisson-lune</div>
+    <div class="latin">Mola mola</div>
+    <div class="level">Très rare près du bord</div>
+    <label><input type="checkbox" data-id="83"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="roussette scyliorhinus canicula rare mais possible">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scyliorhinus canicula" alt="Roussette" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Roussette</div>
+    <div class="latin">Scyliorhinus canicula</div>
+    <div class="level">Rare mais possible</div>
+    <label><input type="checkbox" data-id="84"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="raie pastenague dasyatis pastinaca rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Dasyatis pastinaca" alt="Raie pastenague" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Raie pastenague</div>
+    <div class="latin">Dasyatis pastinaca</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="85"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="raie aigle myliobatis aquila rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Myliobatis aquila" alt="Raie aigle" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Raie aigle</div>
+    <div class="latin">Myliobatis aquila</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="86"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="raie papillon gymnura altavela très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Gymnura altavela" alt="Raie papillon" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Raie papillon</div>
+    <div class="latin">Gymnura altavela</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="87"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="syngnathe à long museau syngnathus acus assez rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Syngnathus acus" alt="Syngnathe à long museau" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Syngnathe à long museau</div>
+    <div class="latin">Syngnathus acus</div>
+    <div class="level">Assez rare</div>
+    <label><input type="checkbox" data-id="88"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="syngnathe de lagune syngnathus abaster rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Syngnathus abaster" alt="Syngnathe de lagune" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Syngnathe de lagune</div>
+    <div class="latin">Syngnathus abaster</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="89"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="hippocampe moucheté hippocampus guttulatus très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Hippocampus guttulatus" alt="Hippocampe moucheté" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Hippocampe moucheté</div>
+    <div class="latin">Hippocampus guttulatus</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="90"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="hippocampe à museau court hippocampus hippocampus très rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Hippocampus hippocampus" alt="Hippocampe à museau court" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Hippocampe à museau court</div>
+    <div class="latin">Hippocampus hippocampus</div>
+    <div class="level">Très rare</div>
+    <label><input type="checkbox" data-id="91"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="poisson-aiguille nerophis ophidion rare">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Nerophis ophidion" alt="Poisson-aiguille" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Poisson-aiguille</div>
+    <div class="latin">Nerophis ophidion</div>
+    <div class="level">Rare</div>
+    <label><input type="checkbox" data-id="92"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="orphie belone belone courant en surface">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Belone belone" alt="Orphie" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Orphie</div>
+    <div class="latin">Belone belone</div>
+    <div class="level">Courant en surface</div>
+    <label><input type="checkbox" data-id="93"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="atherine atherina hepsetus très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Atherina hepsetus" alt="Atherine" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Atherine</div>
+    <div class="latin">Atherina hepsetus</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="94"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="atherine à gros yeux atherina boyeri très courant">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Atherina boyeri" alt="Atherine à gros yeux" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Atherine à gros yeux</div>
+    <div class="latin">Atherina boyeri</div>
+    <div class="level">Très courant</div>
+    <label><input type="checkbox" data-id="95"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="anchois engraulis encrasicolus courant en bancs">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Engraulis encrasicolus" alt="Anchois" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Anchois</div>
+    <div class="latin">Engraulis encrasicolus</div>
+    <div class="level">Courant en bancs</div>
+    <label><input type="checkbox" data-id="96"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="sardine sardina pilchardus courant en bancs">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Sardina pilchardus" alt="Sardine" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Sardine</div>
+    <div class="latin">Sardina pilchardus</div>
+    <div class="level">Courant en bancs</div>
+    <label><input type="checkbox" data-id="97"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="maquereau scomber colias assez courant au large">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Scomber colias" alt="Maquereau" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Maquereau</div>
+    <div class="latin">Scomber colias</div>
+    <div class="level">Assez courant au large</div>
+    <label><input type="checkbox" data-id="98"> <span>Déjà vu</span></label>
+  </div>
+</article>
+<article class="card" data-search="thon rouge thunnus thynnus très rare près du bord">
+  <div class="photo"><div class="loading">Recherche de la photo…</div>
+    <img data-scientific="Thunnus thynnus" alt="Thon rouge" loading="lazy">
+  </div>
+  <div class="info">
+    <div class="name">Thon rouge</div>
+    <div class="latin">Thunnus thynnus</div>
+    <div class="level">Très rare près du bord</div>
+    <label><input type="checkbox" data-id="99"> <span>Déjà vu</span></label>
+  </div>
+</article></main>
+<div class="note">Photos chargées depuis Wikimedia/Wikipedia. Les cases cochées sont conservées sur cet iPhone.</div>
+
 <script>
-const K="pokedex-minorque-v5";let s=JSON.parse(localStorage.getItem(K)||"[]");
+const SPECIES=[{"fr": "Serran écriture", "latin": "Serranus scriba", "niv": "Très courant"}, {"fr": "Serran chevrette", "latin": "Serranus cabrilla", "niv": "Courant"}, {"fr": "Girelle paon", "latin": "Thalassoma pavo", "niv": "Très courant"}, {"fr": "Girelle commune", "latin": "Coris julis", "niv": "Très courant"}, {"fr": "Tordo", "latin": "Symphodus tinca", "niv": "Courant"}, {"fr": "Labre vert", "latin": "Labrus viridis", "niv": "Assez rare"}, {"fr": "Crénilabre mélops", "latin": "Symphodus melops", "niv": "Courant"}, {"fr": "Rouget de roche", "latin": "Mullus surmuletus", "niv": "Très courant"}, {"fr": "Castagnole", "latin": "Chromis chromis", "niv": "Très courant"}, {"fr": "Rascasse brune", "latin": "Scorpaena porcus", "niv": "Courant mais discrète"}, {"fr": "Mérou brun", "latin": "Epinephelus marginatus", "niv": "Rare en snorkeling"}, {"fr": "Gobie à grosse tête", "latin": "Gobius cobitis", "niv": "Très courant"}, {"fr": "Blennie gattorugine", "latin": "Parablennius gattorugine", "niv": "Courant"}, {"fr": "Blennie sanguine", "latin": "Parablennius sanguinolentus", "niv": "Assez courant"}, {"fr": "Tripterygion rouge", "latin": "Tripterygion tripteronotus", "niv": "Assez courant"}, {"fr": "Fausse sole", "latin": "Bothus podas", "niv": "Courant sur sable"}, {"fr": "Murène commune", "latin": "Muraena helena", "niv": "Assez rare"}, {"fr": "Sar à deux bandes", "latin": "Diplodus vulgaris", "niv": "Très courant"}, {"fr": "Sparaillon", "latin": "Diplodus annularis", "niv": "Très courant"}, {"fr": "Chopa", "latin": "Spondyliosoma cantharus", "niv": "Courant"}, {"fr": "Marbré", "latin": "Lithognathus mormyrus", "niv": "Très courant sur sable"}, {"fr": "Palomète blanche", "latin": "Trachinotus ovatus", "niv": "Assez courant"}, {"fr": "Oblade", "latin": "Oblada melanura", "niv": "Très courant"}, {"fr": "Dorade royale", "latin": "Sparus aurata", "niv": "Courant"}, {"fr": "Sar commun", "latin": "Diplodus sargus", "niv": "Très courant"}, {"fr": "Saupe", "latin": "Sarpa salpa", "niv": "Très courant"}, {"fr": "Picarel", "latin": "Spicara maena", "niv": "Courant"}, {"fr": "Bogue", "latin": "Boops boops", "niv": "Très courant"}, {"fr": "Barracuda méditerranéen", "latin": "Sphyraena sphyraena", "niv": "Assez rare"}, {"fr": "Mulet lippu", "latin": "Chelon labrosus", "niv": "Très courant"}, {"fr": "Loup / Bar", "latin": "Dicentrarchus labrax", "niv": "Rare en snorkeling"}, {"fr": "Sériole couronnée", "latin": "Seriola dumerili", "niv": "Rare en snorkeling"}, {"fr": "Mulet doré", "latin": "Chelon auratus", "niv": "Courant"}, {"fr": "Mulet porc", "latin": "Chelon ramada", "niv": "Courant"}, {"fr": "Mulet à grosse tête", "latin": "Mugil cephalus", "niv": "Courant"}, {"fr": "Mulet sauteur", "latin": "Chelon saliens", "niv": "Courant"}, {"fr": "Rouget-barbet de vase", "latin": "Mullus barbatus", "niv": "Courant sur sable"}, {"fr": "Sar tambour", "latin": "Diplodus cervinus", "niv": "Assez rare"}, {"fr": "Sar à museau pointu", "latin": "Diplodus puntazzo", "niv": "Courant"}, {"fr": "Dorade rose", "latin": "Pagellus bogaraveo", "niv": "Rare en snorkeling"}, {"fr": "Pageot commun", "latin": "Pagellus erythrinus", "niv": "Courant"}, {"fr": "Pageot acarné", "latin": "Pagellus acarne", "niv": "Assez courant"}, {"fr": "Pagré commun", "latin": "Pagrus pagrus", "niv": "Assez rare"}, {"fr": "Mostelle de roche", "latin": "Phycis phycis", "niv": "Rare, dans les trous"}, {"fr": "Congre commun", "latin": "Conger conger", "niv": "Assez rare"}, {"fr": "Murène brune", "latin": "Gymnothorax unicolor", "niv": "Rare"}, {"fr": "Rascasse rouge", "latin": "Scorpaena scrofa", "niv": "Rare"}, {"fr": "Rascasse du large", "latin": "Scorpaena elongata", "niv": "Très rare"}, {"fr": "Chabot à épines", "latin": "Scorpaenodes arenai", "niv": "Très rare"}, {"fr": "Rascasse pustuleuse", "latin": "Scorpaena notata", "niv": "Assez rare"}, {"fr": "Rascasse rose", "latin": "Helicolenus dactylopterus", "niv": "Très rare"}, {"fr": "Poisson-lézard", "latin": "Synodus saurus", "niv": "Courant sur sable"}, {"fr": "Poisson-lézard à taches", "latin": "Synodus synodus", "niv": "Assez rare"}, {"fr": "Saint-Pierre", "latin": "Zeus faber", "niv": "Rare"}, {"fr": "Gobie noir", "latin": "Gobius niger", "niv": "Courant"}, {"fr": "Gobie paganel", "latin": "Gobius paganellus", "niv": "Très courant"}, {"fr": "Gobie à bouche rouge", "latin": "Gobius cruentatus", "niv": "Assez courant"}, {"fr": "Gobie de Bucchich", "latin": "Gobius bucchichi", "niv": "Courant"}, {"fr": "Gobie à joues rouges", "latin": "Gobius geniporus", "niv": "Assez courant"}, {"fr": "Gobie à deux taches", "latin": "Gobius incognitus", "niv": "Courant"}, {"fr": "Gobie jaune", "latin": "Gobius xanthocephalus", "niv": "Assez courant"}, {"fr": "Gobie léopard", "latin": "Thorogobius ephippiatus", "niv": "Assez rare"}, {"fr": "Gobie à sept bandes", "latin": "Gobius roulei", "niv": "Rare"}, {"fr": "Blennie paon", "latin": "Salaria pavo", "niv": "Très courant"}, {"fr": "Blennie ocellée", "latin": "Blennius ocellaris", "niv": "Assez courant"}, {"fr": "Blennie de Roux", "latin": "Parablennius rouxi", "niv": "Courant"}, {"fr": "Blennie pilicorne", "latin": "Parablennius pilicornis", "niv": "Courant"}, {"fr": "Blennie de Zvonimir", "latin": "Parablennius zvonimiri", "niv": "Assez courant"}, {"fr": "Blennie de Dalmatien", "latin": "Microlipophrys dalmatinus", "niv": "Courant"}, {"fr": "Blennie de la Méditerranée", "latin": "Microlipophrys canevae", "niv": "Assez rare"}, {"fr": "Lepadogaster de Gouan", "latin": "Lepadogaster gouani", "niv": "Assez rare"}, {"fr": "Lepadogaster à deux taches", "latin": "Diplecogaster bimaculata", "niv": "Assez courant"}, {"fr": "Crénilabre cendré", "latin": "Symphodus cinereus", "niv": "Courant"}, {"fr": "Crénilabre ocellé", "latin": "Symphodus ocellatus", "niv": "Très courant"}, {"fr": "Crénilabre méditerranéen", "latin": "Symphodus mediterraneus", "niv": "Courant"}, {"fr": "Crénilabre à cinq taches", "latin": "Symphodus roissali", "niv": "Assez courant"}, {"fr": "Crénilabre rayé", "latin": "Symphodus rostratus", "niv": "Courant"}, {"fr": "Crénilabre de Dalmatie", "latin": "Symphodus dalmaticus", "niv": "Assez rare"}, {"fr": "Labre merle", "latin": "Labrus merula", "niv": "Courant"}, {"fr": "Labre à queue noire", "latin": "Labrus bimaculatus", "niv": "Assez rare"}, {"fr": "Labre tacheté", "latin": "Labrus mixtus", "niv": "Rare"}, {"fr": "Poisson-perroquet méditerranéen", "latin": "Sparisoma cretense", "niv": "Assez courant"}, {"fr": "Baliste cabri", "latin": "Balistes capriscus", "niv": "Rare"}, {"fr": "Poisson-lune", "latin": "Mola mola", "niv": "Très rare près du bord"}, {"fr": "Roussette", "latin": "Scyliorhinus canicula", "niv": "Rare mais possible"}, {"fr": "Raie pastenague", "latin": "Dasyatis pastinaca", "niv": "Rare"}, {"fr": "Raie aigle", "latin": "Myliobatis aquila", "niv": "Rare"}, {"fr": "Raie papillon", "latin": "Gymnura altavela", "niv": "Très rare"}, {"fr": "Syngnathe à long museau", "latin": "Syngnathus acus", "niv": "Assez rare"}, {"fr": "Syngnathe de lagune", "latin": "Syngnathus abaster", "niv": "Rare"}, {"fr": "Hippocampe moucheté", "latin": "Hippocampus guttulatus", "niv": "Très rare"}, {"fr": "Hippocampe à museau court", "latin": "Hippocampus hippocampus", "niv": "Très rare"}, {"fr": "Poisson-aiguille", "latin": "Nerophis ophidion", "niv": "Rare"}, {"fr": "Orphie", "latin": "Belone belone", "niv": "Courant en surface"}, {"fr": "Atherine", "latin": "Atherina hepsetus", "niv": "Très courant"}, {"fr": "Atherine à gros yeux", "latin": "Atherina boyeri", "niv": "Très courant"}, {"fr": "Anchois", "latin": "Engraulis encrasicolus", "niv": "Courant en bancs"}, {"fr": "Sardine", "latin": "Sardina pilchardus", "niv": "Courant en bancs"}, {"fr": "Maquereau", "latin": "Scomber colias", "niv": "Assez courant au large"}, {"fr": "Thon rouge", "latin": "Thunnus thynnus", "niv": "Très rare près du bord"}];
+const KEY="pokedex-minorque-v100";
+let state=JSON.parse(localStorage.getItem(KEY)||"[]");
 const boxes=[...document.querySelectorAll('input[type=checkbox]')];
-function save(){boxes.forEach(b=>{b.checked=s.includes(b.dataset.id);b.closest(".card").classList.toggle("seen",b.checked)});document.getElementById("n").textContent=s.length;document.getElementById("fill").style.width=(s.length/32*100)+"%";localStorage.setItem(K,JSON.stringify(s))}
-boxes.forEach(b=>b.addEventListener("change",()=>{if(b.checked&&!s.includes(b.dataset.id))s.push(b.dataset.id);if(!b.checked)s=s.filter(x=>x!==b.dataset.id);save()}));
-document.getElementById("q").addEventListener("input",e=>{let q=e.target.value.toLowerCase().trim();document.querySelectorAll(".card").forEach(c=>c.style.display=(!q||c.dataset.search.includes(q))?"":"none")});
+
+function save(){
+  boxes.forEach(b=>{
+    b.checked=state.includes(b.dataset.id);
+    b.closest(".card").classList.toggle("seen",b.checked);
+  });
+  document.getElementById("n").textContent=state.length;
+  document.getElementById("fill").style.width=(state.length/100*100)+"%";
+  localStorage.setItem(KEY,JSON.stringify(state));
+}
+boxes.forEach(b=>b.addEventListener("change",()=>{
+  if(b.checked && !state.includes(b.dataset.id)) state.push(b.dataset.id);
+  if(!b.checked) state=state.filter(x=>x!==b.dataset.id);
+  save();
+}));
+
+document.getElementById("q").addEventListener("input",e=>{
+  const q=e.target.value.toLowerCase().trim();
+  document.querySelectorAll(".card").forEach(c=>c.style.display=(!q||c.dataset.search.includes(q))?"":"none");
+});
+
+// Photo loader: Wikipedia's thumbnail service is queried only when needed.
+// If a page is not found, a second language endpoint is tried.
+async function loadPhoto(img){
+  const scientific=img.dataset.scientific;
+  const slug=encodeURIComponent(scientific.replaceAll(" ","_"));
+  const urls=[
+    "https://en.wikipedia.org/api/rest_v1/page/summary/"+slug,
+    "https://fr.wikipedia.org/api/rest_v1/page/summary/"+slug,
+    "https://es.wikipedia.org/api/rest_v1/page/summary/"+slug
+  ];
+  for(const url of urls){
+    try{
+      const r=await fetch(url);
+      if(!r.ok) continue;
+      const d=await r.json();
+      if(d.thumbnail && d.thumbnail.source){
+        img.src=d.thumbnail.source;
+        img.onload=()=>{img.classList.add("ok");img.previousElementSibling.style.display="none"};
+        return;
+      }
+    }catch(e){}
+  }
+  img.previousElementSibling.textContent="Photo indisponible";
+}
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      loadPhoto(e.target);
+      observer.unobserve(e.target);
+    }
+  });
+},{rootMargin:"500px"});
+document.querySelectorAll("img[data-scientific]").forEach(img=>observer.observe(img));
 save();
-</script></body></html>
+</script>
+</body>
+</html>
