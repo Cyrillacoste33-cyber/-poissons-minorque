@@ -1,0 +1,2074 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075985">
+<title>🐟 Mon Pokédex – Poissons de Minorque</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef8fb;color:#17363d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#075985,#0891b2);color:white;padding:calc(14px + env(safe-area-inset-top)) 14px 13px;box-shadow:0 3px 12px #0003}
+h1{margin:0 0 5px;font-size:22px;line-height:1.15} .sub{font-size:16px}
+.bar{height:9px;background:#ffffff55;border-radius:20px;margin-top:9px;overflow:hidden} .fill{height:100%;width:0;background:#fff}
+.tools{position:sticky;top:91px;z-index:15;background:#eef8fb;padding:10px 12px}
+.tools input{width:100%;padding:13px 14px;border:1px solid #c8dde3;border-radius:14px;font-size:16px;background:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 12px 28px}
+.card{background:#fff;border-radius:17px;overflow:hidden;box-shadow:0 2px 10px #0001}
+.gallery{height:155px;background:#e4f3f6;position:relative;overflow:hidden;touch-action:pan-y}
+.gallery-track{display:flex;width:300%;height:100%;transition:transform .22s ease}
+.slot{width:33.333333%;height:100%;flex:none;display:flex;align-items:center;justify-content:center;color:#607d86;font-size:13px;position:relative}
+.slot img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:50%;background:#ffffffdd;color:#17363d;font-size:30px;line-height:30px;z-index:3}
+.prev{left:8px} .next{right:8px}
+.dots{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:4px;color:#fff;text-shadow:0 1px 3px #000;z-index:3}
+.info{padding:10px 11px 12px} .name{font-size:17px;font-weight:800;line-height:1.15}
+.latin{font-size:14px;font-style:italic;color:#68818a;margin-top:5px}
+.level{display:inline-block;margin-top:7px;padding:5px 9px;background:#e4f3f6;border-radius:15px;color:#2c6879;font-size:12px}
+.check{display:flex;align-items:center;gap:7px;margin-top:9px;font-weight:700;font-size:15px}
+.check input{width:25px;height:25px;accent-color:#087f9d} .seen{opacity:.72} .seen .name{text-decoration:line-through}
+.personal{padding:8px 10px;border-top:1px solid #d7e8ec;font-size:12px;color:#607d86}
+.personal input{font-size:12px;max-width:100%}
+.note{padding:12px 14px 28px;color:#657b82;font-size:12px;text-align:center}
+.lightbox{display:none;position:fixed;inset:0;background:#000f;z-index:1000;touch-action:none;overflow:hidden}
+.lightbox.open{display:block}
+.lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#lightboxImg{max-width:94vw;max-height:88vh;object-fit:contain;border-radius:10px;transform-origin:center center;user-select:none;-webkit-user-drag:none;will-change:transform}
+.lb-close{position:absolute;right:14px;top:calc(14px + env(safe-area-inset-top));width:48px;height:48px;border:0;border-radius:50%;font-size:30px;background:#fff;color:#17363d;z-index:5}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;font-size:34px;background:#ffffffdd;color:#17363d;z-index:5}
+.lb-prev{left:12px} .lb-next{right:12px}
+.lb-counter{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:white;background:#0008;padding:6px 10px;border-radius:14px;font-size:13px;z-index:5}
+.lb-help{position:absolute;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);color:#fff;background:#0007;padding:6px 10px;border-radius:12px;font-size:11px;z-index:4}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}.gallery{height:190px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🐟 Mon Pokédex – Poissons de Minorque</h1>
+<div class="sub"><span id="n">0</span> / 100 espèces vues</div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+</header>
+<div class="tools"><input id="q" placeholder="🔎 Rechercher un poisson…" autocomplete="off"></div>
+<main class="grid" id="grid"><article class="card" data-search="serran écriture serranus scriba très courant" data-id="0">
+  <div class="gallery" data-species="Serran écriture" data-latin="Serranus scriba">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Serran écriture</div>
+    <div class="latin">Serranus scriba</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="0"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="serran chevrette serranus cabrilla courant" data-id="1">
+  <div class="gallery" data-species="Serran chevrette" data-latin="Serranus cabrilla">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Serran chevrette</div>
+    <div class="latin">Serranus cabrilla</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="1"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="girelle paon thalassoma pavo très courant" data-id="2">
+  <div class="gallery" data-species="Girelle paon" data-latin="Thalassoma pavo">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Girelle paon</div>
+    <div class="latin">Thalassoma pavo</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="2"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="girelle commune coris julis très courant" data-id="3">
+  <div class="gallery" data-species="Girelle commune" data-latin="Coris julis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Girelle commune</div>
+    <div class="latin">Coris julis</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="3"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="tordo symphodus tinca courant" data-id="4">
+  <div class="gallery" data-species="Tordo" data-latin="Symphodus tinca">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Tordo</div>
+    <div class="latin">Symphodus tinca</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="4"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="labre vert labrus viridis assez rare" data-id="5">
+  <div class="gallery" data-species="Labre vert" data-latin="Labrus viridis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Labre vert</div>
+    <div class="latin">Labrus viridis</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="5"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre mélops symphodus melops courant" data-id="6">
+  <div class="gallery" data-species="Crénilabre mélops" data-latin="Symphodus melops">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre mélops</div>
+    <div class="latin">Symphodus melops</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="6"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rouget de roche mullus surmuletus très courant" data-id="7">
+  <div class="gallery" data-species="Rouget de roche" data-latin="Mullus surmuletus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rouget de roche</div>
+    <div class="latin">Mullus surmuletus</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="7"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="castagnole chromis chromis très courant" data-id="8">
+  <div class="gallery" data-species="Castagnole" data-latin="Chromis chromis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Castagnole</div>
+    <div class="latin">Chromis chromis</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="8"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse brune scorpaena porcus courant mais discrète" data-id="9">
+  <div class="gallery" data-species="Rascasse brune" data-latin="Scorpaena porcus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse brune</div>
+    <div class="latin">Scorpaena porcus</div>
+    <div class="level">Courant mais discrète</div>
+    <label class="check"><input type="checkbox" data-id="9"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mérou brun epinephelus marginatus rare en snorkeling" data-id="10">
+  <div class="gallery" data-species="Mérou brun" data-latin="Epinephelus marginatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mérou brun</div>
+    <div class="latin">Epinephelus marginatus</div>
+    <div class="level">Rare en snorkeling</div>
+    <label class="check"><input type="checkbox" data-id="10"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie à grosse tête gobius cobitis très courant" data-id="11">
+  <div class="gallery" data-species="Gobie à grosse tête" data-latin="Gobius cobitis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie à grosse tête</div>
+    <div class="latin">Gobius cobitis</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="11"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie gattorugine parablennius gattorugine courant" data-id="12">
+  <div class="gallery" data-species="Blennie gattorugine" data-latin="Parablennius gattorugine">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie gattorugine</div>
+    <div class="latin">Parablennius gattorugine</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="12"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie sanguine parablennius sanguinolentus assez courant" data-id="13">
+  <div class="gallery" data-species="Blennie sanguine" data-latin="Parablennius sanguinolentus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie sanguine</div>
+    <div class="latin">Parablennius sanguinolentus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="13"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="tripterygion rouge tripterygion tripteronotus assez courant" data-id="14">
+  <div class="gallery" data-species="Tripterygion rouge" data-latin="Tripterygion tripteronotus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Tripterygion rouge</div>
+    <div class="latin">Tripterygion tripteronotus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="14"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="fausse sole bothus podas courant sur sable" data-id="15">
+  <div class="gallery" data-species="Fausse sole" data-latin="Bothus podas">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Fausse sole</div>
+    <div class="latin">Bothus podas</div>
+    <div class="level">Courant sur sable</div>
+    <label class="check"><input type="checkbox" data-id="15"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="murène commune muraena helena assez rare" data-id="16">
+  <div class="gallery" data-species="Murène commune" data-latin="Muraena helena">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Murène commune</div>
+    <div class="latin">Muraena helena</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="16"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sar à deux bandes diplodus vulgaris très courant" data-id="17">
+  <div class="gallery" data-species="Sar à deux bandes" data-latin="Diplodus vulgaris">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sar à deux bandes</div>
+    <div class="latin">Diplodus vulgaris</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="17"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sparaillon diplodus annularis très courant" data-id="18">
+  <div class="gallery" data-species="Sparaillon" data-latin="Diplodus annularis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sparaillon</div>
+    <div class="latin">Diplodus annularis</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="18"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="chopa spondyliosoma cantharus courant" data-id="19">
+  <div class="gallery" data-species="Chopa" data-latin="Spondyliosoma cantharus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Chopa</div>
+    <div class="latin">Spondyliosoma cantharus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="19"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="marbré lithognathus mormyrus très courant sur sable" data-id="20">
+  <div class="gallery" data-species="Marbré" data-latin="Lithognathus mormyrus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Marbré</div>
+    <div class="latin">Lithognathus mormyrus</div>
+    <div class="level">Très courant sur sable</div>
+    <label class="check"><input type="checkbox" data-id="20"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="palomète blanche trachinotus ovatus assez courant" data-id="21">
+  <div class="gallery" data-species="Palomète blanche" data-latin="Trachinotus ovatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Palomète blanche</div>
+    <div class="latin">Trachinotus ovatus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="21"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="oblade oblada melanura très courant" data-id="22">
+  <div class="gallery" data-species="Oblade" data-latin="Oblada melanura">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Oblade</div>
+    <div class="latin">Oblada melanura</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="22"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="dorade royale sparus aurata courant" data-id="23">
+  <div class="gallery" data-species="Dorade royale" data-latin="Sparus aurata">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Dorade royale</div>
+    <div class="latin">Sparus aurata</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="23"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sar commun diplodus sargus très courant" data-id="24">
+  <div class="gallery" data-species="Sar commun" data-latin="Diplodus sargus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sar commun</div>
+    <div class="latin">Diplodus sargus</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="24"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="saupe sarpa salpa très courant" data-id="25">
+  <div class="gallery" data-species="Saupe" data-latin="Sarpa salpa">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Saupe</div>
+    <div class="latin">Sarpa salpa</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="25"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="picarel spicara maena courant" data-id="26">
+  <div class="gallery" data-species="Picarel" data-latin="Spicara maena">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Picarel</div>
+    <div class="latin">Spicara maena</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="26"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="bogue boops boops très courant" data-id="27">
+  <div class="gallery" data-species="Bogue" data-latin="Boops boops">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Bogue</div>
+    <div class="latin">Boops boops</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="27"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="barracuda méditerranéen sphyraena sphyraena assez rare" data-id="28">
+  <div class="gallery" data-species="Barracuda méditerranéen" data-latin="Sphyraena sphyraena">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Barracuda méditerranéen</div>
+    <div class="latin">Sphyraena sphyraena</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="28"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mulet lippu chelon labrosus très courant" data-id="29">
+  <div class="gallery" data-species="Mulet lippu" data-latin="Chelon labrosus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mulet lippu</div>
+    <div class="latin">Chelon labrosus</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="29"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="loup / bar dicentrarchus labrax rare en snorkeling" data-id="30">
+  <div class="gallery" data-species="Loup / Bar" data-latin="Dicentrarchus labrax">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Loup / Bar</div>
+    <div class="latin">Dicentrarchus labrax</div>
+    <div class="level">Rare en snorkeling</div>
+    <label class="check"><input type="checkbox" data-id="30"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sériole couronnée seriola dumerili rare en snorkeling" data-id="31">
+  <div class="gallery" data-species="Sériole couronnée" data-latin="Seriola dumerili">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sériole couronnée</div>
+    <div class="latin">Seriola dumerili</div>
+    <div class="level">Rare en snorkeling</div>
+    <label class="check"><input type="checkbox" data-id="31"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre ocellé symphodus ocellatus courant" data-id="32">
+  <div class="gallery" data-species="Crénilabre ocellé" data-latin="Symphodus ocellatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre ocellé</div>
+    <div class="latin">Symphodus ocellatus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="32"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre cendré symphodus cinereus courant" data-id="33">
+  <div class="gallery" data-species="Crénilabre cendré" data-latin="Symphodus cinereus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre cendré</div>
+    <div class="latin">Symphodus cinereus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="33"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre à cinq taches symphodus roissali courant" data-id="34">
+  <div class="gallery" data-species="Crénilabre à cinq taches" data-latin="Symphodus roissali">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre à cinq taches</div>
+    <div class="latin">Symphodus roissali</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="34"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre paon symphodus mediterraneus courant" data-id="35">
+  <div class="gallery" data-species="Crénilabre paon" data-latin="Symphodus mediterraneus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre paon</div>
+    <div class="latin">Symphodus mediterraneus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="35"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre à queue noire symphodus rostratus assez courant" data-id="36">
+  <div class="gallery" data-species="Crénilabre à queue noire" data-latin="Symphodus rostratus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre à queue noire</div>
+    <div class="latin">Symphodus rostratus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="36"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="labre merle labrus merula courant" data-id="37">
+  <div class="gallery" data-species="Labre merle" data-latin="Labrus merula">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Labre merle</div>
+    <div class="latin">Labrus merula</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="37"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="labre à queue noire labrus bimaculatus assez courant" data-id="38">
+  <div class="gallery" data-species="Labre à queue noire" data-latin="Labrus bimaculatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Labre à queue noire</div>
+    <div class="latin">Labrus bimaculatus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="38"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="labre commun labrus bergylta assez rare" data-id="39">
+  <div class="gallery" data-species="Labre commun" data-latin="Labrus bergylta">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Labre commun</div>
+    <div class="latin">Labrus bergylta</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="39"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse rouge scorpaena scrofa assez courant" data-id="40">
+  <div class="gallery" data-species="Rascasse rouge" data-latin="Scorpaena scrofa">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse rouge</div>
+    <div class="latin">Scorpaena scrofa</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="40"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse chagrin scorpaena notata courant" data-id="41">
+  <div class="gallery" data-species="Rascasse chagrin" data-latin="Scorpaena notata">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse chagrin</div>
+    <div class="latin">Scorpaena notata</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="41"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse pustuleuse scorpaena maderensis assez rare" data-id="42">
+  <div class="gallery" data-species="Rascasse pustuleuse" data-latin="Scorpaena maderensis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse pustuleuse</div>
+    <div class="latin">Scorpaena maderensis</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="42"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse des baléares scorpaena balearica assez rare" data-id="43">
+  <div class="gallery" data-species="Rascasse des Baléares" data-latin="Scorpaena balearica">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse des Baléares</div>
+    <div class="latin">Scorpaena balearica</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="43"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mérou blanc epinephelus aeneus rare" data-id="44">
+  <div class="gallery" data-species="Mérou blanc" data-latin="Epinephelus aeneus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mérou blanc</div>
+    <div class="latin">Epinephelus aeneus</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="44"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mérou royal mycteroperca rubra rare" data-id="45">
+  <div class="gallery" data-species="Mérou royal" data-latin="Mycteroperca rubra">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mérou royal</div>
+    <div class="latin">Mycteroperca rubra</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="45"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie marbré pomatoschistus marmoratus courant" data-id="46">
+  <div class="gallery" data-species="Gobie marbré" data-latin="Pomatoschistus marmoratus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie marbré</div>
+    <div class="latin">Pomatoschistus marmoratus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="46"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie de steinitz gobius incognitus courant" data-id="47">
+  <div class="gallery" data-species="Gobie de Steinitz" data-latin="Gobius incognitus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie de Steinitz</div>
+    <div class="latin">Gobius incognitus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="47"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie noir gobius niger courant" data-id="48">
+  <div class="gallery" data-species="Gobie noir" data-latin="Gobius niger">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie noir</div>
+    <div class="latin">Gobius niger</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="48"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie à bouche rouge gobius cruentatus assez courant" data-id="49">
+  <div class="gallery" data-species="Gobie à bouche rouge" data-latin="Gobius cruentatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie à bouche rouge</div>
+    <div class="latin">Gobius cruentatus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="49"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie de bucchich gobius bucchichi assez courant" data-id="50">
+  <div class="gallery" data-species="Gobie de Bucchich" data-latin="Gobius bucchichi">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie de Bucchich</div>
+    <div class="latin">Gobius bucchichi</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="50"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gobie paganel gobius paganellus courant" data-id="51">
+  <div class="gallery" data-species="Gobie paganel" data-latin="Gobius paganellus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gobie paganel</div>
+    <div class="latin">Gobius paganellus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="51"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie paon salaria pavo très courant" data-id="52">
+  <div class="gallery" data-species="Blennie paon" data-latin="Salaria pavo">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie paon</div>
+    <div class="latin">Salaria pavo</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="52"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie de roux parablennius rouxi courant" data-id="53">
+  <div class="gallery" data-species="Blennie de Roux" data-latin="Parablennius rouxi">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie de Roux</div>
+    <div class="latin">Parablennius rouxi</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="53"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie pilicorne parablennius pilicornis courant" data-id="54">
+  <div class="gallery" data-species="Blennie pilicorne" data-latin="Parablennius pilicornis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie pilicorne</div>
+    <div class="latin">Parablennius pilicornis</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="54"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie de zvonimir parablennius zvonimiri assez courant" data-id="55">
+  <div class="gallery" data-species="Blennie de Zvonimir" data-latin="Parablennius zvonimiri">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie de Zvonimir</div>
+    <div class="latin">Parablennius zvonimiri</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="55"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="blennie trigloïde coryphoblennius galerita très courant" data-id="56">
+  <div class="gallery" data-species="Blennie trigloïde" data-latin="Coryphoblennius galerita">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Blennie trigloïde</div>
+    <div class="latin">Coryphoblennius galerita</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="56"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="tripterygion jaune tripterygion delaisi courant" data-id="57">
+  <div class="gallery" data-species="Tripterygion jaune" data-latin="Tripterygion delaisi">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Tripterygion jaune</div>
+    <div class="latin">Tripterygion delaisi</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="57"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="tripterygion bleu tripterygion melanurus assez courant" data-id="58">
+  <div class="gallery" data-species="Tripterygion bleu" data-latin="Tripterygion melanurus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Tripterygion bleu</div>
+    <div class="latin">Tripterygion melanurus</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="58"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rouget de vase mullus barbatus courant" data-id="59">
+  <div class="gallery" data-species="Rouget de vase" data-latin="Mullus barbatus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rouget de vase</div>
+    <div class="latin">Mullus barbatus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="59"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="gardon de mer atherina boyeri très courant" data-id="60">
+  <div class="gallery" data-species="Gardon de mer" data-latin="Atherina boyeri">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Gardon de mer</div>
+    <div class="latin">Atherina boyeri</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="60"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="athérine commune atherina presbyter très courant" data-id="61">
+  <div class="gallery" data-species="Athérine commune" data-latin="Atherina presbyter">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Athérine commune</div>
+    <div class="latin">Atherina presbyter</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="61"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sar à museau pointu diplodus puntazzo courant" data-id="62">
+  <div class="gallery" data-species="Sar à museau pointu" data-latin="Diplodus puntazzo">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sar à museau pointu</div>
+    <div class="latin">Diplodus puntazzo</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="62"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sar tambour diplodus cervinus assez rare" data-id="63">
+  <div class="gallery" data-species="Sar tambour" data-latin="Diplodus cervinus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sar tambour</div>
+    <div class="latin">Diplodus cervinus</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="63"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="denté commun dentex dentex assez rare" data-id="64">
+  <div class="gallery" data-species="Denté commun" data-latin="Dentex dentex">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Denté commun</div>
+    <div class="latin">Dentex dentex</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="64"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="pageot acarné pagellus acarne assez courant" data-id="65">
+  <div class="gallery" data-species="Pageot acarné" data-latin="Pagellus acarne">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Pageot acarné</div>
+    <div class="latin">Pagellus acarne</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="65"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="pageot commun pagellus erythrinus courant" data-id="66">
+  <div class="gallery" data-species="Pageot commun" data-latin="Pagellus erythrinus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Pageot commun</div>
+    <div class="latin">Pagellus erythrinus</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="66"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="pageot rose pagellus bogaraveo rare" data-id="67">
+  <div class="gallery" data-species="Pageot rose" data-latin="Pagellus bogaraveo">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Pageot rose</div>
+    <div class="latin">Pagellus bogaraveo</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="67"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="pageot à tache rouge pagellus bellottii assez rare" data-id="68">
+  <div class="gallery" data-species="Pageot à tache rouge" data-latin="Pagellus bellottii">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Pageot à tache rouge</div>
+    <div class="latin">Pagellus bellottii</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="68"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mendole spicara flexuosa courant" data-id="69">
+  <div class="gallery" data-species="Mendole" data-latin="Spicara flexuosa">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mendole</div>
+    <div class="latin">Spicara flexuosa</div>
+    <div class="level">Courant</div>
+    <label class="check"><input type="checkbox" data-id="69"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="crénilabre à bandes symphodus doderleini assez rare" data-id="70">
+  <div class="gallery" data-species="Crénilabre à bandes" data-latin="Symphodus doderleini">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Crénilabre à bandes</div>
+    <div class="latin">Symphodus doderleini</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="70"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mostelle de roche phycis phycis assez rare" data-id="71">
+  <div class="gallery" data-species="Mostelle de roche" data-latin="Phycis phycis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mostelle de roche</div>
+    <div class="latin">Phycis phycis</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="71"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mostelle de vase phycis blennoides rare" data-id="72">
+  <div class="gallery" data-species="Mostelle de vase" data-latin="Phycis blennoides">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mostelle de vase</div>
+    <div class="latin">Phycis blennoides</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="72"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="congre commun conger conger assez courant" data-id="73">
+  <div class="gallery" data-species="Congre commun" data-latin="Conger conger">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Congre commun</div>
+    <div class="latin">Conger conger</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="73"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="anguille européenne anguilla anguilla rare" data-id="74">
+  <div class="gallery" data-species="Anguille européenne" data-latin="Anguilla anguilla">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Anguille européenne</div>
+    <div class="latin">Anguilla anguilla</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="74"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="murène ruban rhinomuraena quaesita très rare" data-id="75">
+  <div class="gallery" data-species="Murène ruban" data-latin="Rhinomuraena quaesita">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Murène ruban</div>
+    <div class="latin">Rhinomuraena quaesita</div>
+    <div class="level">Très rare</div>
+    <label class="check"><input type="checkbox" data-id="75"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="fletan méditerranéen arnoglossus laterna assez courant" data-id="76">
+  <div class="gallery" data-species="Fletan méditerranéen" data-latin="Arnoglossus laterna">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Fletan méditerranéen</div>
+    <div class="latin">Arnoglossus laterna</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="76"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="fausse limande arnoglossus thori assez rare" data-id="77">
+  <div class="gallery" data-species="Fausse limande" data-latin="Arnoglossus thori">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Fausse limande</div>
+    <div class="latin">Arnoglossus thori</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="77"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="cardine à quatre taches lepidorhombus boscii rare" data-id="78">
+  <div class="gallery" data-species="Cardine à quatre taches" data-latin="Lepidorhombus boscii">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Cardine à quatre taches</div>
+    <div class="latin">Lepidorhombus boscii</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="78"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sole commune solea solea assez rare" data-id="79">
+  <div class="gallery" data-species="Sole commune" data-latin="Solea solea">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sole commune</div>
+    <div class="latin">Solea solea</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="79"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sole-pôle solea senegalensis assez rare" data-id="80">
+  <div class="gallery" data-species="Sole-pôle" data-latin="Solea senegalensis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sole-pôle</div>
+    <div class="latin">Solea senegalensis</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="80"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="rascasse volante pterois miles très rare" data-id="81">
+  <div class="gallery" data-species="Rascasse volante" data-latin="Pterois miles">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Rascasse volante</div>
+    <div class="latin">Pterois miles</div>
+    <div class="level">Très rare</div>
+    <label class="check"><input type="checkbox" data-id="81"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="poisson-lune mola mola rare" data-id="82">
+  <div class="gallery" data-species="Poisson-lune" data-latin="Mola mola">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Poisson-lune</div>
+    <div class="latin">Mola mola</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="82"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="baliste commun balistes capriscus rare" data-id="83">
+  <div class="gallery" data-species="Baliste commun" data-latin="Balistes capriscus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Baliste commun</div>
+    <div class="latin">Balistes capriscus</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="83"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="poisson-perroquet méditerranéen sparisoma cretense assez rare" data-id="84">
+  <div class="gallery" data-species="Poisson-perroquet méditerranéen" data-latin="Sparisoma cretense">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Poisson-perroquet méditerranéen</div>
+    <div class="latin">Sparisoma cretense</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="84"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="poisson-trompette macroramphosus scolopax rare" data-id="85">
+  <div class="gallery" data-species="Poisson-trompette" data-latin="Macroramphosus scolopax">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Poisson-trompette</div>
+    <div class="latin">Macroramphosus scolopax</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="85"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="barracuda à bouche jaune sphyraena viridensis assez courant" data-id="86">
+  <div class="gallery" data-species="Barracuda à bouche jaune" data-latin="Sphyraena viridensis">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Barracuda à bouche jaune</div>
+    <div class="latin">Sphyraena viridensis</div>
+    <div class="level">Assez courant</div>
+    <label class="check"><input type="checkbox" data-id="86"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="liche amie lichia amia rare" data-id="87">
+  <div class="gallery" data-species="Liche amie" data-latin="Lichia amia">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Liche amie</div>
+    <div class="latin">Lichia amia</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="87"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="sériole à ceinture seriola fasciata très rare" data-id="88">
+  <div class="gallery" data-species="Sériole à ceinture" data-latin="Seriola fasciata">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Sériole à ceinture</div>
+    <div class="latin">Seriola fasciata</div>
+    <div class="level">Très rare</div>
+    <label class="check"><input type="checkbox" data-id="88"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="roussette petite scyliorhinus canicula rare" data-id="89">
+  <div class="gallery" data-species="Roussette petite" data-latin="Scyliorhinus canicula">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Roussette petite</div>
+    <div class="latin">Scyliorhinus canicula</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="89"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="raie pastenague dasyatis pastinaca rare" data-id="90">
+  <div class="gallery" data-species="Raie pastenague" data-latin="Dasyatis pastinaca">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Raie pastenague</div>
+    <div class="latin">Dasyatis pastinaca</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="90"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="raie aigle myliobatis aquila rare" data-id="91">
+  <div class="gallery" data-species="Raie aigle" data-latin="Myliobatis aquila">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Raie aigle</div>
+    <div class="latin">Myliobatis aquila</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="91"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="raie bouclée raja clavata rare" data-id="92">
+  <div class="gallery" data-species="Raie bouclée" data-latin="Raja clavata">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Raie bouclée</div>
+    <div class="latin">Raja clavata</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="92"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="requin bleu prionace glauca très rare" data-id="93">
+  <div class="gallery" data-species="Requin bleu" data-latin="Prionace glauca">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Requin bleu</div>
+    <div class="latin">Prionace glauca</div>
+    <div class="level">Très rare</div>
+    <label class="check"><input type="checkbox" data-id="93"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="requin pèlerin cetorhinus maximus très rare" data-id="94">
+  <div class="gallery" data-species="Requin pèlerin" data-latin="Cetorhinus maximus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Requin pèlerin</div>
+    <div class="latin">Cetorhinus maximus</div>
+    <div class="level">Très rare</div>
+    <label class="check"><input type="checkbox" data-id="94"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mulet doré chelon auratus très courant" data-id="95">
+  <div class="gallery" data-species="Mulet doré" data-latin="Chelon auratus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mulet doré</div>
+    <div class="latin">Chelon auratus</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="95"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mulet cabot mugil cephalus très courant" data-id="96">
+  <div class="gallery" data-species="Mulet cabot" data-latin="Mugil cephalus">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mulet cabot</div>
+    <div class="latin">Mugil cephalus</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="96"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="mulet porc chelon ramada très courant" data-id="97">
+  <div class="gallery" data-species="Mulet porc" data-latin="Chelon ramada">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Mulet porc</div>
+    <div class="latin">Chelon ramada</div>
+    <div class="level">Très courant</div>
+    <label class="check"><input type="checkbox" data-id="97"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="ombrine commune umbrina cirrosa assez rare" data-id="98">
+  <div class="gallery" data-species="Ombrine commune" data-latin="Umbrina cirrosa">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Ombrine commune</div>
+    <div class="latin">Umbrina cirrosa</div>
+    <div class="level">Assez rare</div>
+    <label class="check"><input type="checkbox" data-id="98"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article>
+<article class="card" data-search="maigre argyrosomus regius rare" data-id="99">
+  <div class="gallery" data-species="Maigre" data-latin="Argyrosomus regius">
+    <div class="gallery-track">
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+      <div class="slot"><span>📷 Chargement…</span></div>
+    </div>
+    <button class="nav prev" type="button" aria-label="Photo précédente">‹</button>
+    <button class="nav next" type="button" aria-label="Photo suivante">›</button>
+    <div class="dots">● ● ●</div>
+  </div>
+  <div class="info">
+    <div class="name">Maigre</div>
+    <div class="latin">Argyrosomus regius</div>
+    <div class="level">Rare</div>
+    <label class="check"><input type="checkbox" data-id="99"> Déjà vu</label>
+  </div>
+  <div class="personal"><label>📸 Ma photo : <input type="file" accept="image/*"></label></div>
+</article></main>
+<div class="note">100 espèces méditerranéennes proposées pour l’observation autour de Minorque. Les cases et les photos personnelles sont conservées sur cet appareil.</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-help">← → pour changer • pince à deux doigts pour zoomer</div>
+  <button class="lb-close" id="lightboxClose" aria-label="Fermer">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Photo précédente">‹</button>
+  <div class="lb-stage" id="lbStage"><img id="lightboxImg" alt=""></div>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Photo suivante">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<script>
+const SEEN_KEY="pokedex-minorque-v10";
+let seen=[];
+try{seen=JSON.parse(localStorage.getItem(SEEN_KEY)||"[]")}catch(e){}
+const boxes=[...document.querySelectorAll('.check input')];
+function refresh(){
+ boxes.forEach(b=>{b.checked=seen.includes(b.dataset.id);b.closest('.card').classList.toggle('seen',b.checked)});
+ document.getElementById('n').textContent=seen.length;
+ document.getElementById('fill').style.width=(seen.length/100*100)+'%';
+ try{localStorage.setItem(SEEN_KEY,JSON.stringify(seen))}catch(e){}
+}
+boxes.forEach(b=>b.addEventListener('change',()=>{
+ if(b.checked&&!seen.includes(b.dataset.id))seen.push(b.dataset.id);
+ if(!b.checked)seen=seen.filter(x=>x!==b.dataset.id);
+ refresh();
+}));
+document.getElementById('q').addEventListener('input',e=>{
+ const q=e.target.value.toLowerCase().trim();
+ document.querySelectorAll('.card').forEach(c=>c.style.display=(!q||c.dataset.search.includes(q))?'':'none');
+});
+
+const lightbox=document.getElementById('lightbox'), img=document.getElementById('lightboxImg');
+const lbCounter=document.getElementById('lbCounter');
+let currentUrls=[], currentIndex=0, scale=1, tx=0, ty=0, startDist=0, startScale=1, startX=0, startY=0, baseTx=0, baseTy=0, swipeStartX=0, swipeStartY=0;
+
+function applyTransform(){img.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`}
+function resetZoom(){scale=1;tx=0;ty=0;applyTransform()}
+function showLightbox(index){
+ if(!currentUrls.length)return;
+ currentIndex=(index+currentUrls.length)%currentUrls.length;
+ img.src=currentUrls[currentIndex];
+ lbCounter.textContent=(currentIndex+1)+' / '+currentUrls.length;
+ resetZoom();
+ lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');
+}
+function closePhoto(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');img.removeAttribute('src');resetZoom()}
+function nextPhoto(){showLightbox(currentIndex+1)}
+function prevPhoto(){showLightbox(currentIndex-1)}
+document.getElementById('lightboxClose').onclick=closePhoto;
+document.getElementById('lbNext').onclick=nextPhoto;
+document.getElementById('lbPrev').onclick=prevPhoto;
+lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target===document.getElementById('lbStage'))closePhoto()});
+document.addEventListener('keydown',e=>{if(!lightbox.classList.contains('open'))return;if(e.key==='Escape')closePhoto();if(e.key==='ArrowRight')nextPhoto();if(e.key==='ArrowLeft')prevPhoto()});
+
+function dist(a,b){return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
+img.addEventListener('touchstart',e=>{
+ if(e.touches.length===2){startDist=dist(e.touches[0],e.touches[1]);startScale=scale;}
+ else if(e.touches.length===1){startX=e.touches[0].clientX;startY=e.touches[0].clientY;baseTx=tx;baseTy=ty;swipeStartX=startX;swipeStartY=startY;}
+},{passive:false});
+img.addEventListener('touchmove',e=>{
+ e.preventDefault();
+ if(e.touches.length===2&&startDist){scale=Math.max(1,Math.min(4,startScale*dist(e.touches[0],e.touches[1])/startDist));applyTransform();}
+ else if(e.touches.length===1&&scale>1){tx=baseTx+(e.touches[0].clientX-startX);ty=baseTy+(e.touches[0].clientY-startY);applyTransform();}
+},{passive:false});
+img.addEventListener('touchend',e=>{
+ if(e.touches.length===0){
+  if(scale===1&&Math.abs((e.changedTouches[0]?.clientX||0)-swipeStartX)>70&&Math.abs((e.changedTouches[0]?.clientY||0)-swipeStartY)<80){
+   ((e.changedTouches[0].clientX-swipeStartX)<0)?nextPhoto():prevPhoto();
+  }
+  startDist=0;
+ }
+});
+
+async function commonsPhotos(latin){
+ const base='https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url&iiurlwidth=1200&format=json&origin=*';
+ const queries=[latin+' underwater fish',latin+' fish Mediterranean',latin];
+ for(const q of queries){
+  try{
+   const r=await fetch(base+'&gsrsearch='+encodeURIComponent(q));
+   const j=await r.json();
+   const pages=Object.values(j.query?.pages||{});
+   const urls=pages.map(p=>p.imageinfo?.[0]?.thumburl||p.imageinfo?.[0]?.url).filter(Boolean);
+   const unique=[...new Set(urls)];
+   if(unique.length)return unique.slice(0,3);
+  }catch(e){}
+ }
+ return [];
+}
+async function loadGallery(card){
+ const gallery=card.querySelector('.gallery'), latin=gallery.dataset.latin;
+ const slots=[...gallery.querySelectorAll('.slot')];
+ const urls=await commonsPhotos(latin);
+ gallery._urls=urls;
+ if(!urls.length){slots[0].innerHTML='<span>Photo indisponible</span>';slots.slice(1).forEach(s=>s.innerHTML='');return}
+ urls.forEach((u,i)=>{
+  if(!slots[i])return;
+  const im=document.createElement('img');im.src=u;im.alt=gallery.dataset.species;im.loading='lazy';
+  im.onclick=()=>{currentUrls=urls;showLightbox(i)};
+  slots[i].replaceChildren(im);
+ });
+ slots.slice(urls.length).forEach(s=>s.innerHTML='');
+ let pos=0;const track=gallery.querySelector('.gallery-track');
+ const move=()=>track.style.transform='translateX(-'+(pos*33.333333)+'%)';
+ gallery.querySelector('.prev').onclick=()=>{pos=(pos+urls.length-1)%urls.length;move()};
+ gallery.querySelector('.next').onclick=()=>{pos=(pos+1)%urls.length;move()};
+}
+document.querySelectorAll('.card').forEach(card=>{
+ const id=card.dataset.id,input=card.querySelector('.personal input'),key='pokedex-photo-'+id;
+ try{
+  const old=localStorage.getItem(key);
+  if(old){const im=document.createElement('img');im.src=old;im.style='width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin-top:7px;cursor:zoom-in';im.onclick=()=>{currentUrls=[old];showLightbox(0)};card.querySelector('.personal').appendChild(im)}
+ }catch(e){}
+ input.addEventListener('change',()=>{
+  const f=input.files?.[0];if(!f)return;
+  const r=new FileReader();r.onload=()=>{try{localStorage.setItem(key,r.result);location.reload()}catch(e){alert('Photo trop volumineuse pour le stockage de cet appareil.')}};r.readAsDataURL(f);
+ });
+});
+(async()=>{const cards=[...document.querySelectorAll('.card')];for(let i=0;i<cards.length;i+=8)await Promise.all(cards.slice(i,i+8).map(loadGallery))})();
+refresh();
+</script>
+</body>
+</html>
